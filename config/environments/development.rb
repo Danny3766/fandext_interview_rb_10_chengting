@@ -37,10 +37,22 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
-
+  # Enable send emails
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: "smtp.mailgun.org",
+  port: "587",
+  domain: 'www.astrocamprubyjoy.com',
+  authentication: "plain",
+  user_name: 'postmaster@sandboxf0ab3b62ca414a93ae61886f0d89fb06.mailgun.org',
+  password: '25e893c0130d37b6788cfea856eb2172-eb38c18d-b1289860',
+  enable_starttls_auto: true
+}
+  
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
